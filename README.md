@@ -1,4 +1,5 @@
 # ticket-app
+Basically, admin/maneger issues ticket to employee and employee has to close the ticket once done doing the task.
 
 # Beckend : Springboot v3.3.7
 Dependencies:
