@@ -33,11 +33,11 @@ public class SecurityConfig {
         return https
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/admin-manager-employee/**").hasAnyAuthority("ADMIN", "MANAGER", "EMPLOYEE")
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/manager/**").hasAuthority("MANAGER")
-                        .requestMatchers("/employee").hasAuthority("EMPLOYEE")
+                        .requestMatchers("/employee/**").hasAuthority("EMPLOYEE")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

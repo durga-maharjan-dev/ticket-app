@@ -36,16 +36,17 @@ public class User  implements UserDetails, Principal {
     private Role role;
 
     public User() {
+        this.joinedAt = LocalDate.now();
     }
 
-    public User(Long id, String firstName, String lastName, String email, String username, String password, LocalDate joinedAt, Role role) {
+    public User(Long id, String firstName, String lastName, String email, String username, String password, Role role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.joinedAt = joinedAt;
+        this.joinedAt = LocalDate.now();
         this.role = role;
     }
 
@@ -103,9 +104,9 @@ public class User  implements UserDetails, Principal {
         return joinedAt;
     }
 
-    public void setJoinedAt(LocalDate joinedAt) {
-        this.joinedAt = joinedAt;
-    }
+//    public void setJoinedAt(LocalDate joinedAt) {
+//        this.joinedAt = joinedAt;
+//    }
 
     public Role getRole() {
         return role;

@@ -1,0 +1,32 @@
+.container{
+  margin:1rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.register-form{
+  padding: 2rem;
+  background: #eee;
+  border-radius: .5rem;
+}
+.register-form h2, .form-control{
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.form-control input, select{
+  height:2rem;
+  padding-left: .5rem;
+  width:100%;
+}
+.btn-register{
+  padding: .5rem 1rem;
+  background: green;
+  color:#ddd;
+  border: none;
+  border-radius: .5rem;
+  width: 100%;
+}
+.btn-register:hover{
+ background: black;
+}
