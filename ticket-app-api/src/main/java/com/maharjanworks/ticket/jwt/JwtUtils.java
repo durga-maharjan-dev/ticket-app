@@ -1,5 +1,6 @@
 package com.maharjanworks.ticket.jwt;
 
+import com.maharjanworks.ticket.model.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
@@ -7,13 +8,18 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -27,9 +33,14 @@ public class JwtUtils {
 
 
     public String generateToken(UserDetails userDetails){
+        GrantedAuthority authority= ((List<GrantedAuthority>) userDetails.getAuthorities()).get(0);
+        Map<String, String> userRole = new HashMap<>();
+        userRole.put("role", authority.getAuthority());
+
         return Jwts
                 .builder()
                 .subject(userDetails.getUsername())
+                .claims(userRole)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(getSigningKey())
@@ -73,6 +84,15 @@ public class JwtUtils {
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String username = extractUsername(token);
         return username.equalsIgnoreCase(userDetails.getUsername()) && !isTokenExpired(token);
+    }
+
+    public String extractRole(String token){
+      return Jwts.parser()
+              .verifyWith(getSigningKey())
+              .build()
+              .parseSignedClaims(token)
+              .getPayload()
+              .get("role").toString();
     }
 
 
