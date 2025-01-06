@@ -7,7 +7,7 @@
 }
 .register-form{
   padding: 2rem;
-  background: #eee;
+  border: 1px solid #333;
   border-radius: .5rem;
 }
 .register-form h2, .form-control{

@@ -1,7 +1,8 @@
 <div class="container">
   <h1>Ticket App <br><span> by maharjanworks</span></h1>
   <nav>
-    <button routerLink="/login" class="btn-login">Login</button>
+    <button routerLink="/login" class="btn-login" *ngIf="!isAuthenticated">Login</button>
+    <button (click)="logout()" class="btn-logout" *ngIf="isAuthenticated">Log Out</button>
     <button routerLink="/register" class="btn-register">Register</button>
   </nav>
 </div>
