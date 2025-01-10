@@ -13,6 +13,8 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   errorMessage: string ='';
   message: string ='';
+  showLoginLink = false;
+  isAdmin=false;
   
   constructor(
     private readonly authService:AuthService,
@@ -31,6 +33,7 @@ export class RegisterComponent implements OnInit {
   }
 
  async handleRegister(){
+    this.isAdmin=true;
     if (this.registerForm.invalid){
       alert("Fill up all required fields");
       return;
@@ -39,9 +42,14 @@ export class RegisterComponent implements OnInit {
     if(!isConfirm) return;
 
     try{
-       const response = await this.authService.register(this.registerForm.value);
+      const token = localStorage.getItem('token');
+      if(!token){
+        this.showError("Unauthenticated user");
+        return;
+      }
+       const response = await this.authService.register(this.registerForm.value, token);
        if (response.statusCode  === 200){
-         this.message=response.message;
+        this.message=response.message;
         this.router.navigate(['/register']);
        }
     }catch(error: any){
@@ -52,9 +60,10 @@ export class RegisterComponent implements OnInit {
 
   showError(message: string){
     this.errorMessage = message;
+    this.showLoginLink = true;
     setTimeout(()=>{
       this.errorMessage ='';
-    }, 3000);
+    }, 4000);
   }
 
 

@@ -32,7 +32,11 @@ export class LoginComponent implements OnInit{
     if (response.statusCode === 200){
       localStorage.setItem('token', response.token);
       localStorage.setItem('role', response.role);
-      this.router.navigate(['/dashboard']);
+      if (localStorage.getItem('role') === 'EMPLOYEE'){
+        this.router.navigate(['/employee-dashboard'])
+      }else{
+        this.router.navigate(['/dashboard']);
+      }
     }else{
       this.showError(response.message);
     }

@@ -1,0 +1,24 @@
+table{
+  width:100%;
+}
+table th{
+  text-align: left;
+}
+.ticket-status{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.status{
+  margin-right: 2rem;
+}
+.status button{
+  padding: .5rem 1rem;
+  background: lightblue;
+  border: 1px solid #333;
+  border-radius: .5rem;
+}
+.status button:hover{
+  background: #333;
+  color:#ddd;
+}

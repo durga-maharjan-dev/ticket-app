@@ -10,6 +10,9 @@ import { AuthService } from 'src/app/service/auth.service';
 export class HeaderComponent implements OnInit{
 
   isAuthenticated = false;
+  isAdmin = false;
+  isManager = false;
+  isEmployee = false;
 
   constructor(
     private authService: AuthService,
@@ -19,6 +22,9 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
      this.isAuthenticated =  this.authService.isAuthenticated();
+     this.isAdmin = this.authService.isAdmin();
+     this.isManager = this.authService.isManager();
+     this.isEmployee = this.authService.isEmployee();
   }
 
   logout(){

@@ -1,0 +1,24 @@
+.container{
+  display:flex;
+  justify-self: center;
+  margin-top: 1.5rem;
+}
+.ticket-form{
+  border: 1px solid #333;
+  padding: 2rem;
+  border-radius: .5rem;
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  gap: 1rem;
+}
+input, select,button{
+  padding: .5rem;
+  height: 2rem;
+  width:100%;
+}
+
+.error-message{
+  color:red;
+  font-weight: bold;
+  font-size: small;
+}

@@ -30,3 +30,10 @@
 .btn-register:hover{
  background: black;
 }
+
+.error-message{
+  color: red;
+  font-weight: bold;
+  background-color: black;
+  margin-bottom: 1rem;
+}

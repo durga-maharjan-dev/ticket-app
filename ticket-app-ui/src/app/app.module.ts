@@ -10,6 +10,11 @@ import { LoginComponent } from './component/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { ProfileComponent } from './component/profile/profile.component';
+import { CreateTicketComponent } from './component/create-ticket/create-ticket.component';
+import { ViewTicketsComponent } from './component/view-tickets/view-tickets.component';
+import { EmployeeDashboardComponent } from './component/employee-dashboard/employee-dashboard.component';
+import { ViewEmployeeTicketsComponent } from './component/view-employee-tickets/view-employee-tickets.component';
  
 @NgModule({
   declarations: [
@@ -18,7 +23,12 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfileComponent,
+    CreateTicketComponent,
+    ViewTicketsComponent,
+    EmployeeDashboardComponent,
+    ViewEmployeeTicketsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,45 @@
+<div class="container">
+  <table>
+    <thead>
+      <tr >
+        <th>S.No.</th>
+        <th>name</th>
+        <th>description</th>
+        <th>Issued At</th>
+        <th>Expires At</th>
+        <th>Issued To</th>
+        <th>Issued By</th>
+        <th>Status</th>
+        <th colspan="2">Progress</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <td>{{ticket.id}}</td>
+        <td>{{ticket.name}}</td>
+        <td>{{ticket.description}}</td>
+        <td>{{ticket.issuedAt}}</td>
+        <td>{{ticket.expiresAt}}</td>
+        <td>{{ticket.issuedTo}}</td>
+        <td>{{ticket.issuedBy}}</td>
+        <td>{{ticket.status}}</td>
+        <td>
+          <button (click)= "handlePending(ticket.id)">PENDING</button>
+        </td>
+        <td>
+          <button>DONE</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="ticket-status">
+    <div class="status">
+     
+    </div>
+    <div class="status">
+     
+    </div>
+  </div>
+
+</div>

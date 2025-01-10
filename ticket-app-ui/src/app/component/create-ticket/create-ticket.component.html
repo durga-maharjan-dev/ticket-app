@@ -1,0 +1,22 @@
+<div class="container">
+  <form  class="ticket-form" [formGroup]="ticketForm" (ngSubmit)="handleCreateTicket()">
+    <h2>Create A Ticket</h2>
+    <p *ngIf="message" class="error-message">{{message}}</p>
+    <p *ngIf="errorMessage" class="error-message">  {{errorMessage}}</p>
+    <div class="form-control">
+      <input type="text" formControlName="name" placeholder="Ticket Name">
+    </div>
+    <div>
+      <input type="text" formControlName="description" placeholder="Description">
+    </div>
+    <div>
+       <select formControlName="issuedTo">
+        <option hidden>TicketTo</option>
+        <option *ngFor="let firstName of employeeFirstNames" [value]=firstName> {{firstName}}</option>
+       </select>
+    </div>
+    <div class="btn">
+      <button type="submit">Create</button>
+    </div>
+  </form>
+</div>

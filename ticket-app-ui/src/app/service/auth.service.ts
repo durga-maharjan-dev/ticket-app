@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -10,8 +10,11 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  async register(user: any) : Promise<any>{
+  async register(user: any, token: any) : Promise<any>{
     const url = `${this.BASE_URL}/register`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
      try{
        const response = this.httpClient.post<any>(url, user).toPromise();
        return response;
@@ -30,6 +33,21 @@ export class AuthService {
     }
   }
 
+  async profile(token: any): Promise<any>{
+    const url = `http://localhost:8080/all/profile`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    try{
+     const response = await this.httpClient.get<any>(url, {headers}).toPromise();
+     return response;
+    } catch(error: any){
+      throw error;
+    }
+
+
+  }
+
 
 
  // Authentication Methods
@@ -43,7 +61,7 @@ export class AuthService {
 
  isAuthenticated(): boolean{
   if(typeof localStorage !== 'undefined'){
-     return localStorage.getItem('token') != null;
+     return localStorage.getItem('token') != null && localStorage.getItem('role') != null;
   }
   return false;
  }
@@ -55,9 +73,16 @@ export class AuthService {
   return false;
  }
 
- isUser(): boolean{
+ isManager(): boolean{
   if(typeof localStorage !== 'undefined'){
-    return localStorage.getItem('role') === 'USER';
+    return localStorage.getItem('role') === 'MANAGER';
+  }
+  return false;
+ }
+ 
+ isEmployee(): boolean{
+  if (typeof localStorage !== 'undefined'){
+    return localStorage.getItem('role') === 'EMPLOYEE';
   }
   return false;
  }

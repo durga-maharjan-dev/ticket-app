@@ -1,0 +1,13 @@
+<div class="user-profile" *ngIf="isAdmin || isManager || isEmployee">
+  <h2 *ngIf="isAdmin">Admin Profile</h2>
+  <h2 *ngIf="isManager">Manager Profile</h2>
+  <h2 *ngIf="isEmployee">Employee Profile</h2>
+  <div class="profile-details">
+    <label>First Name: </label><b>{{profile.firstName}}</b><br>
+    <label>Last Name: </label><b>{{profile.lastName}}</b><br>
+    <label>Role: </label><b>{{profile.role}}</b><br>
+    <label>Email: </label><b>{{profile.email}}</b><br>
+    <label>Username: </label><b>{{profile.username}}</b><br>
+    <label>Status: </label><b>{{(profile.enabled)? 'active':'inactive'}}</b>
+  </div>
+</div>

@@ -1,7 +1,10 @@
+<div *ngIf="isAdmin" class="navbar">
+    <button routerLink="/dashboard">show All Users</button>
+</div>
 <div class="container">
   <form class="register-form" [formGroup]="registerForm" (ngSubmit)="handleRegister()">
       <h2>Register</h2>
-      <p *ngIf="errorMessage">{{errorMessage}}</p>
+      <p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>
       <p *ngIf="message">{{message}}</p>
       <div class="form-control">
         <input type="text" placeholder="First Name" formControlName="firstName">
